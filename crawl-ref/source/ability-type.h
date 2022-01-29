@@ -323,5 +323,7 @@ enum ability_type
     ABIL_WIZ_SET_TERRAIN,
     ABIL_WIZ_CLEAR_TERRAIN,
 #endif
+
+    ABIL_LASER_EYES,
     NUM_ABILITIES
 };

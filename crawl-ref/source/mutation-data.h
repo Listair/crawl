@@ -394,6 +394,22 @@ static const mutation_def mut_data[] =
 },
 #if TAG_MAJOR_VERSION == 34
 
+{ MUT_LASER_EYES, 2, 2, mutflag::good, false,
+  "laser eyes",
+
+  {"You can shoot laser beams from your eyes.",
+   "You can shoot BIGGER laser beams from your eyes.",
+   ""},
+
+  {"Your eyes burn with power.",
+   "Your eyes burn more intensely.",
+   ""},
+
+  {"Your eyes feel refreshed and cease burning.",
+   "Your eyes feel somewhat soothed and burn less.",
+   ""},
+},
+
 { MUT_BREATHE_FLAMES, 0, 3, mutflag::good, false,
   "breathe flames",
 

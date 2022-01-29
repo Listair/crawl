@@ -667,6 +667,10 @@ static vector<ability_def> &_get_ability_list()
             0, 0, 0, LOS_MAX_RANGE, {}, abflag::instant },
 #endif
 
+        { ABIL_LASER_EYES, "Shoot Eye Lasers",
+            1, 0, 0, LOS_MAX_RANGE, {fail_basis::xl, 20, 1},
+            abflag::breath | abflag::dir_or_target },
+
     };
     return Ability_List;
 }
@@ -722,6 +726,8 @@ static int _ability_zap_pow(ability_type abil)
     {
         case ABIL_SPIT_POISON:
             return 10 + you.experience_level;
+        case ABIL_LASER_EYES:
+              return 10 + you.experience_level;
         case ABIL_BREATHE_ACID:
         case ABIL_BREATHE_FIRE:
         case ABIL_BREATHE_FROST:
@@ -1836,6 +1842,7 @@ static bool _check_ability_possible(const ability_def& abil, bool quiet = false)
     }
 
     case ABIL_SPIT_POISON:
+    case ABIL_LASER_EYES:
     case ABIL_BREATHE_FIRE:
     case ABIL_BREATHE_FROST:
     case ABIL_BREATHE_POISON:
@@ -2573,6 +2580,30 @@ static spret _do_ability(const ability_def& abil, bool fail, dist *target,
         }
         break;
     }
+
+  case ABIL_LASER_EYES:      // eye lasers
+  {
+        int power = 25 + (you.experience_level * 2 * you.get_mutation_level(MUT_LASER_EYES));
+        //beam.range = _calc_breath_ability_range(abil.ability);
+
+        if (you.get_mutation_level(MUT_MISSING_EYE)) //Ru - Sacrifice an Eye
+            power = power / 2; //only get half power if you only have half as many eyes.
+
+        if (you.get_mutation_level(MUT_EYEBALLS)) // Jiyva mutation.
+            power = power * 4; //if you're all eyes, you're also all eye-lasers!
+
+        if (!spell_direction(*target, beam)
+            || !player_tracer(ZAP_LIGHTNING_BOLT, power, beam))
+        {
+            return spret::abort;
+        }
+        else
+        {
+            fail_check();
+            zapping(ZAP_LIGHTNING_BOLT, power, beam);
+        }
+        break;
+}
 
     case ABIL_BREATHE_ACID:       // Draconian acid splash
     {
@@ -3680,6 +3711,10 @@ bool player_has_ability(ability_type abil, bool include_unusable)
         return you.get_mutation_level(MUT_SPIT_POISON) >= 2;
     case ABIL_SPIT_POISON:
         return you.get_mutation_level(MUT_SPIT_POISON) == 1;
+    case ABIL_LASER_EYES:
+        if (!you.has_mutation(MUT_LASER_EYES))
+            return false;
+        //return you.get_mutation_level(MUT_LASER_EYES);
     case ABIL_REVIVIFY:
         return you.has_mutation(MUT_VAMPIRISM) && !you.vampire_alive;
     case ABIL_EXSANGUINATE:
@@ -3752,6 +3787,7 @@ vector<talent> your_talents(bool check_confused, bool include_unusable, bool ign
             ABIL_HOP,
             ABIL_ROLLING_CHARGE,
             ABIL_SPIT_POISON,
+            ABIL_LASER_EYES,
             ABIL_BREATHE_FIRE,
             ABIL_BREATHE_FROST,
             ABIL_BREATHE_POISON,
