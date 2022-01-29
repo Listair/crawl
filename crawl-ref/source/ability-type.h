@@ -317,6 +317,9 @@ enum ability_type
     ABIL_RENOUNCE_RELIGION,
     ABIL_CONVERT_TO_BEOGH,
 
+    //Added by dev docs tutorial
+    ABIL_LASER_EYES,
+
 #ifdef WIZARD
     ABIL_WIZ_BUILD_TERRAIN = 10000,
     ABIL_FIRST_WIZ = ABIL_WIZ_BUILD_TERRAIN,
@@ -324,6 +327,5 @@ enum ability_type
     ABIL_WIZ_CLEAR_TERRAIN,
 #endif
 
-    ABIL_LASER_EYES,
     NUM_ABILITIES
 };
