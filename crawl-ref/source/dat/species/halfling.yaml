@@ -2,7 +2,7 @@ TAG_MAJOR_VERSION: 34
 enum: SP_HALFLING
 monster: MONS_HALFLING
 name: Halfling
-difficulty: False
+difficulty: Simple
 aptitudes:
   xp: 1
   hp: -1
@@ -39,6 +39,10 @@ levelup_stats:
 mutations:
   1:
     MUT_MUTATION_RESISTANCE: 1
+recommended_jobs:
+  - JOB_HUNTER
+  - JOB_WARPER
+  - JOB_ARCANE_MARKSMAN
 recommended_weapons:
   - SK_SHORT_BLADES
   - SK_LONG_BLADES
