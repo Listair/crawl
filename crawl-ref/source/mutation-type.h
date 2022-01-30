@@ -281,6 +281,7 @@ enum mutation_type
     MUT_DEMONIC_TOUCH,
     MUT_DIVINE_ATTRS,
     MUT_LASER_EYES,
+    MUT_BEARD,          //from tutorial; does not affect equipment
     NUM_MUTATIONS,
     CATEGORY_MUTATIONS,
     RANDOM_MUTATION = CATEGORY_MUTATIONS,

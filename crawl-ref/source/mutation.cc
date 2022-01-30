@@ -2146,6 +2146,7 @@ static bool _delete_single_mutation_level(mutation_type mutat,
     case MUT_HORNS:
     case MUT_ANTENNAE:
     case MUT_BEAK:
+    case MUT_BEARD:
     case MUT_CLAWS:
     case MUT_HOOVES:
     case MUT_TALONS:

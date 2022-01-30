@@ -961,11 +961,18 @@ public:
     : AuxAttackType(6, "peck") { };
 };
 
+class AuxBeard: public AuxAttackType
+{
+public:
+    AuxBeard()
+    : AuxAttackType(6, "beard-slap") { };
+};
+
 class AuxTailslap: public AuxAttackType
 {
 public:
     AuxTailslap()
-    : AuxAttackType(6, "tail-slap") { };
+    : AuxAttackType(12, "tail-slap") { };
 
     int get_damage() const override
     {
@@ -1090,6 +1097,7 @@ public:
 static const AuxConstrict   AUX_CONSTRICT = AuxConstrict();
 static const AuxKick        AUX_KICK = AuxKick();
 static const AuxPeck        AUX_PECK = AuxPeck();
+static const AuxBeard       AUX_BEARD = AuxBeard();
 static const AuxHeadbutt    AUX_HEADBUTT = AuxHeadbutt();
 static const AuxTailslap    AUX_TAILSLAP = AuxTailslap();
 static const AuxTouch       AUX_TOUCH = AuxTouch();
@@ -1110,6 +1118,7 @@ static const AuxAttackType* const aux_attack_types[] =
     &AUX_BITE,
     &AUX_PSEUDOPODS,
     &AUX_TENTACLES,
+    &AUX_BEARD,
 };
 
 
@@ -3472,6 +3481,9 @@ bool melee_attack::_extra_aux_attack(unarmed_attack_type atk)
 
     case UNAT_PECK:
         return you.get_mutation_level(MUT_BEAK) && !one_chance_in(3);
+
+    case UNAT_BEARD:
+        return you.get_mutation_level(MUT_BEARD) && !one_chance_in(3);
 
     case UNAT_HEADBUTT:
         return you.get_mutation_level(MUT_HORNS) && !one_chance_in(3);
