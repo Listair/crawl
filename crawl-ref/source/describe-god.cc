@@ -243,6 +243,10 @@ static const char *divine_title[][8] =
     // Ignis -- fire/candles theme
     {"Extinguished",          "Last Ember",             "Glowing Coal",              "Thurifer",
         "Hearthfire",     "Furnace",               "Raging Flame",              "Inferno"},
+
+    // Ralph. Ralph doesn't care.
+        {"Dude",                "Dude",                   "Dude",                      "Dude",
+            "Dude",                "Dude",                   "Dude",                      "Dude"},
 };
 COMPILE_CHECK(ARRAYSZ(divine_title) == NUM_GODS);
 
@@ -459,7 +463,7 @@ static inline void _add_par(formatted_string &desc, const string &str)
  */
 static string _describe_god_wrath_causes(god_type which_god)
 {
-    if (which_god == GOD_RU)
+    if (which_god == GOD_RU || GOD_RALPH)
         return ""; // no wrath
     vector<god_type> evil_gods;
     vector<god_type> chaotic_gods;

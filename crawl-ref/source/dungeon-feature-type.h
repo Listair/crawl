@@ -226,6 +226,7 @@ enum dungeon_feature_type
     DNGN_ALTAR_HEPLIAKLQANA,
     DNGN_ALTAR_WU_JIAN,
     DNGN_ALTAR_IGNIS,
+    DNGN_ALTAR_RALPH,
     DNGN_ALTAR_ECUMENICAL,
 #endif
 
@@ -346,6 +347,8 @@ enum dungeon_feature_type
     DNGN_EXIT_COCYTUS,
     DNGN_EXIT_TARTARUS,
 #endif
+
+    DNGN_ALTAR_RALPH, //tutorial
 
     NUM_FEATURES
 };

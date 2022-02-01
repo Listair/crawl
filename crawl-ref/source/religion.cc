@@ -398,6 +398,16 @@ const vector<vector<god_power>> & get_all_god_powers()
             { 1, ABIL_IGNIS_FOXFIRE, "call a swarm of foxfires against your foes" },
             { 7, ABIL_IGNIS_RISING_FLAME, "rocket upward and away" },
         },
+
+        // Ralph, at the bottom as usual.
+        // Entries with an ability grant you an activated ability at
+        // the listed piety breakpoint. Ones without it just light
+        // up at the appropriate piety level. Implement them elsewhere in the code.
+        // stars needed, ability name, description.
+        {
+          { 2, "ditch work without anyone noticing" },
+        },
+
     };
     static bool god_powers_init = false;
 
@@ -2416,6 +2426,7 @@ string god_name(god_type which_god, bool long_name)
     case GOD_IGNIS:         return "Ignis";
     case GOD_JIYVA: // This is handled at the beginning of the function
     case GOD_ECUMENICAL:    return "an unknown god";
+    case GOD_RALPH:         return "Ralph";
     case NUM_GODS:          return "Buggy";
     }
     return "";
@@ -4476,7 +4487,8 @@ void handle_god_time(int /*time_delta*/)
         case GOD_XOM:
             // Gods without normal piety do nothing each tick.
             return;
-
+        case GOD_RALPH:
+            return;
         case GOD_NO_GOD:
         case GOD_RANDOM:
         case GOD_ECUMENICAL:
