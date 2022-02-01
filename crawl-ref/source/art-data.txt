@@ -1641,6 +1641,12 @@ BRAND:      SPWPN_PROTECTION
 INSCRIP:    meekguard
 DBRAND:     It provides extra protection to wielders with little health.
 
+NAME:    ring of the Shoals
+OBJ:     OBJ_JEWELLERY/RING_EVASION
+COLOUR:  ETC_POISON
+TILE:    urand_shoals
+BOOL:    inv, fly, clarity
+
 # This entry must always be last.
 ENUM:   DUMMY2
 NAME:   DUMMY UNRANDART 2
