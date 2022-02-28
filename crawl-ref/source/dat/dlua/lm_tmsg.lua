@@ -167,6 +167,8 @@ end
 function TimedMessaging:event(luamark, cmarker, event)
   if event:type() == dgn.dgn_event_type('entered_level') then
     self._have_entered_level = true
+    -- Announce the portal distance when first entering the level
+    self:say_message(cmarker, luamark.dur)
   elseif not self._have_entered_level then
     return
   end
